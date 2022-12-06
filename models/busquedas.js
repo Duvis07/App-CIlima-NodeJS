@@ -11,6 +11,7 @@ class Busquedas {
     this.leerDB();
   }
 
+  //COLOCAR EN MAYUSCULA LAS PRIMERAS LETRAS
   get historialCapitalizado() {
     return this.historial.map((lugar) => {
       let palabras = lugar.split(" ");
@@ -38,7 +39,7 @@ class Busquedas {
 
   async ciudad(lugar = "") {
     try {
-      // Petición HTTP
+      // Petición HTTP de los lugares de Mapbox
       const instance = axios.create({
         baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json`,
         params: this.paramsMapbox,
@@ -56,6 +57,7 @@ class Busquedas {
     }
   }
 
+  //Peticion HTTP del clima de OpenWeather
   async climaLugar(lat, lon) {
     try {
       //instance axios.create()
@@ -79,6 +81,7 @@ class Busquedas {
     }
   }
 
+  //Agregar al historial  de busquedas de los lugares
   agregarHistorial(lugar = "") {
     //TODO: prevenir duplicados
     if (this.historial.includes(lugar.toLocaleLowerCase())) {
@@ -93,6 +96,7 @@ class Busquedas {
     this.guardarDB();
   }
 
+  //Guardar en DB el historial de busquedas de los lugares
   guardarDB() {
     const payload = {
       historial: this.historial,
