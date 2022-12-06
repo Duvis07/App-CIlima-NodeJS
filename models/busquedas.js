@@ -85,6 +85,8 @@ class Busquedas {
       return;
     }
 
+    this.historial = this.historial.splice(0, 5);
+
     this.historial.unshift(lugar.toLocaleLowerCase());
 
     //Grabar en DB
